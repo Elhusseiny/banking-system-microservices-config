@@ -1,0 +1,25 @@
+spring:
+  # Database
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5431/cards?currentSchema=cards
+    hikari:
+      connection-timeout: 20000 #maximum number of milliseconds that a client will wait for a connection
+      minimum-idle: 3 #minimum number of idle connections maintained by HikariCP in a connection pool
+      maximum-pool-size: 3 #maximum pool size
+      idle-timeout: 10000 #maximum idle time for connection
+      max-lifetime: 1000 # maximum lifetime in milliseconds of a connection in the pool after it is closed.
+    username: postgres
+    password: root
+  #Liquibase properties
+  liquibase:
+    change-log: classpath:/db/changelog/changelog-master.xml
+    default-schema: cards
+  # JPA properties
+  jpa:
+    hibernate:
+      ddl-auto: none # When you launch the application for the first time - switch "none" at "create"
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
